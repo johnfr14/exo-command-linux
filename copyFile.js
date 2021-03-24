@@ -3,11 +3,11 @@ const fs = require('fs')
 console.log(process.argv[3])
 
 const isAlreadyExist = (path) => {
-let pathPasted = process.argv[2].split('/')  
+let pathPasted = path.split('/')  
 nameFile = pathPasted.pop()
 pathPasted = pathPasted.join("/")
-pathPasted = fs.readdirSync(path)
-console.log(pathPasted)
+
+pathPasted = fs.readdirSync(pathPasted)
 pathPasted = pathPasted.filter(word => word === nameFile).length
 return pathPasted > 0 ? true : false
 }
