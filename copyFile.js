@@ -1,17 +1,6 @@
 const fs = require('fs')
 
 
-/* this function will check if the name of the new file/directory already exist */
-const isFileAlreadyExist = (path) => {
-let pathPasted = path.split('/')  
-nameFile = pathPasted.pop()
-pathPasted = pathPasted.join("/")
-
-pathPasted = fs.readdirSync(pathPasted)
-pathPasted = pathPasted.filter(word => word === nameFile).length
-return pathPasted > 0 ? true : false
-}
-
 /* this switch will check if the user has well wrote at least 2 parameters the origin path and the new path */
 switch (process.argv.length) {
   case 2:
@@ -38,7 +27,7 @@ if (process.argv[3][0] >= '0' && process.argv[3][0] <= '9' || process.argv[3][0]
 
 
 /* si notre fichier existe déjà dans le repertoir selectioné alors message d'erreur il y aura */
-if (isFileAlreadyExist(newPath)) {
+if (fs.existsSync(newPath)) {
   console.log('CP: Ce fichier/dossier existe déjà')
   process.exit(1)
 } 
